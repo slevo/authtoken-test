@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Khronos - Demo</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="css/base.css">  
+   <link rel="stylesheet" href="css/demo.css">
+
+   <!-- script
+   ================================================== -->
+	<script src="js/modernizr.js"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+
+<body>
+
+	<!-- header 
+   ================================================== -->
+   <header>
+   	<div class="row">
+   		<div class="col-twelve">
+
+   			<h1>Login<span>.</span></h1>
+
+   			<p class="lead">
+        Please login now.
+        </p>
+        <p class="lead"><div id="container"></div></p>
+
+   		</div>
+   	</div>   	
+   </header> <!-- /header -->
+   <center><span id='newsContent'></span></center>	
+   <!-- main content
+   ================================================== -->
+   <main>
+   	<div class="row">
+   		<div class="block-1-3 block-s-1-2 block-mob-full">
+   			<div class="bgrid">
+   				<a title="static background">
+   					<div class="image-part">
+   						<div class="overlay"></div>
+   						<div class="link-icon"><i class="fa fa-plus"></i></div>
+   					</div>
+   					<div class="demo-title">
+   						<h3>Username</h3>
+              <form action="api/login" method="post">
+                <input type="text" name="username">
+   					</div>
+   				</a>
+   			</div>
+
+   			<div class="bgrid">
+   				<a title="slideshow background">
+   					<div class="image-part">
+   						<div class="overlay"></div>
+   						<div class="link-icon"><i class="fa fa-plus"></i></div>
+   					</div>
+   					<div class="demo-title">
+   						<h3>Password</h3>
+              <form action="api/login" method="post">
+                <input type="password" name="password">
+                <input type="submit" name="submit">
+              </form>
+   					</div>
+   				</a>
+   			</div>
+
+   		</div>
+   	</div>   
+   </main> <!-- /main -->
+
+   <div id="preloader"> 
+    	<div id="loader"></div>
+   </div> 
+
+   <!-- Java Script
+   ================================================== --> 
+   <script src="js/jquery-2.1.3.min.js"></script>
+   <script src="js/main.js"></script>
+   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+   <!-- Sockets.IO tiem
+     ================================================ -->
+     <script>
+        // creating a new websocket
+        var socket = io.connect('192.168.1.172:3000');
+        socket.on('news', function(data) {
+          console.log(data);
+          document.getElementById('newsContent').innerHTML = data.content;
+          socket.emit('feedback', 'from, client - '+ new Date());
+        });
+     </script>
+
+</body>
+
+</html>

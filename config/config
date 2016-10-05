@@ -1,0 +1,9 @@
+module.exports = {
+  'database':	'mongodb://127.0.0.1:27017/test',
+  'index' 	: './content/index.html',
+  'reDirect': './content/403.html',
+  'notFound': './content/404.html',
+  'login' 	: './content/login.html',
+  'register': './content/register.html',
+  'port'    :	'3000'
+};
